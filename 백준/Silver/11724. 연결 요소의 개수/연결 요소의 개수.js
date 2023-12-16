@@ -1,33 +1,35 @@
-const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-const input = require('fs').readFileSync(filePath).toString().trim().split('\n');
-const [N, M] = input.shift().split(' ').map(Number); // [정점의 개수, 간선의 개수]
-const arr = input.map((v) => v.split(' ').map(Number));
-let visited = Array(N + 1).fill(false);
-let graph = [...Array(N + 1)].map(() => []);
-let answer = 0;
-
-arr.map(([from, to]) => {
+const fs = require("fs");
+const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
+const [N, M] = input.shift().split(" ").map(Number);
+let count = 0;
+const visited = {};
+const graph = {};
+for (let i = 1; i <= N; i++) {
+  graph[i] = [];
+}
+input.forEach((v) => {
+  const [from, to] = v.split(" ").map(Number);
   graph[from].push(to);
   graph[to].push(from);
 });
 
 const bfs = (start) => {
-  let queue = [start];
+  const queue = [start];
   while (queue.length) {
-    const cur = queue.shift();
-    for (const vertax of graph[cur]) {
-      if (!visited[vertax]) {
-        visited[vertax] = true;
-        queue.push(vertax);
+    const vertex = queue.shift();
+    graph[vertex].forEach((v) => {
+      if (!visited[v]) {
+        visited[v] = true;
+        queue.push(v);
       }
-    }
+    });
   }
 };
 
 for (let i = 1; i <= N; i++) {
   if (!visited[i]) {
     bfs(i);
-    answer++;
+    count++;
   }
 }
-console.log(answer);
+console.log(count);
