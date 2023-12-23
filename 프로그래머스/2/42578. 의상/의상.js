@@ -1,10 +1,8 @@
-function solution(clothes) {
-    let result = 1;
+function solution(clothes , answer = 1) {
     const map = new Map();
     clothes.forEach(([value, key]) => map.set(key, (map.get(key) || 1) + 1));
-    console.log(map)
     for(const [_,v] of map) {
-        result *= v
+        answer *= v
     }
-    return result - 1;
+    return answer - 1;
 }
