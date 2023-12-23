@@ -1,8 +1,5 @@
 function solution(pokemons) {
-    const limit = pokemons.length / 2;
-    const map = new Map();
-    for(const pokemon of pokemons){
-        map.set(pokemon, (map.get(pokemon) || 0) + 1)
-    }
-    return [...map.keys()].length > limit ? limit : [...map.keys()].length
+    const max = pokemons.length / 2;
+    const { size : setSize } = new Set(pokemons);
+    return setSize > max ? max : setSize
 }
