@@ -1,3 +1,3 @@
-function solution(my_string , regEx = /[aeiou]/) {
-    return my_string.split("").filter(el => el.replace(regEx, "")).join("")
+function solution(my_string , regEx = /[aeiou]/g) {
+    return my_string.replace(regEx, "");
 }
