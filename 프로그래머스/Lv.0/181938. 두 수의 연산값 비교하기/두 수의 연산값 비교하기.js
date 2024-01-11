@@ -1,3 +1,3 @@
 function solution(a, b) {
-    return String(a) + String(b) > 2 * a * b ? Number(String(a) + String(b)) : 2 * a * b;
+    return Math.max(Number(""+a+b), 2 * a * b);
 }
