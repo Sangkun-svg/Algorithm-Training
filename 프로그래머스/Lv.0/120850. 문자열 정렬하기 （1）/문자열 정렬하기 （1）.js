@@ -1,3 +1,3 @@
-function solution(my_string) {
-    return my_string.split("").filter(str => !isNaN(str)).map(Number).sort((a,b) => a - b);
+function solution(my_string, condition = /[0-9]/g) {
+    return my_string.match(condition).map(Number).sort((a,b) => a - b);
 }
