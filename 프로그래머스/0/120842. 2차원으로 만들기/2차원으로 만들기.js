@@ -1,7 +1,3 @@
 function solution(num_list, n) {
-    const result = [];
-    for(let i = 0; i < num_list.length; i += n){
-        result.push(num_list.slice(i,i+n))
-    }
-    return result;
+    return Array.from({length : num_list.length / n}, (_) => num_list.splice(0,n));
 }
