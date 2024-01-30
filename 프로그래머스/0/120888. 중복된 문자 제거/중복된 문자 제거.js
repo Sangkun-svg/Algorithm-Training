@@ -1,6 +1,6 @@
-function solution(my_string,store = {}) {
-     my_string.split("").forEach((el) => {
-        if(!store[el]) store[el] = true;
-    })
-    return Object.keys(store).join("");
+function solution(my_string, store = {}) {
+    return my_string.split("").reduce((acc, cur) => {
+        if (!acc.includes(cur)) return acc + cur;
+         else return acc;
+    }, "");
 }
